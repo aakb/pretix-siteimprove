@@ -1,7 +1,37 @@
-Siteimprove
-==========================
+Siteimprove – the hack!
+=======================
 
-This is a plugin for `pretix`_. 
+Installation
+------------
+
+1. Append this to `settings.py`:
+
+```
+if config.has_option('siteimprove', 'code'):
+    SITEIMPROVE_CODE = config.get('siteimprove', 'code')
+    MIDDLEWARE[MIDDLEWARE.index('pretix.base.middleware.SecurityMiddleware')] = 'pretix_siteimprove.middleware.SecurityMiddleware'
+```
+
+2. Define your siteimprove code in `pretix.cfg`:
+
+```
+[siteimprove]
+code = xxxxxxx
+```
+
+3. Copy `base_footer.html` to
+   `%pretix.datadir%/templates/pretixpresale/base_footer.html/`
+   (defined in `pretix.cfg`) and append this line:
+
+```
+<script type="text/javascript" src="/_pretix_siteimprove/siteimprove"></script>
+```
+
+4. Restart Pretix
+
+
+
+This is a plugin for `pretix`_.
 
 Development setup
 -----------------
@@ -15,10 +45,6 @@ Development setup
 4. Execute ``python setup.py develop`` within this directory to register this application with pretix's plugin registry.
 
 5. Execute ``make`` within this directory to compile translations.
-
-6. Restart your local pretix server. You can now use the plugin from this repository for your events by enabling it in
-   the 'plugins' tab in the settings.
-
 
 License
 -------
