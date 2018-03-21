@@ -27,7 +27,7 @@ Installation
 
   .. code-block:: HTML
 
-    <script type="text/javascript" src="/_pretix_siteimprove/siteimprove/"></script>
+    <script type="text/javascript" src="{% url 'plugins:pretix_siteimprove:siteimprove' %}"></script>
 
 4. Restart Pretix
 
