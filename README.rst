@@ -4,28 +4,30 @@ Siteimprove – the hack!
 Installation
 ------------
 
-1. Append this to `settings.py`:
+1. Append this to `settings.py` (or, preferably, in your custom
+   settings file
+   (cf. https://docs.djangoproject.com/en/2.0/topics/settings/#designating-the-settings)):
 
-```
-if config.has_option('siteimprove', 'code'):
-    SITEIMPROVE_CODE = config.get('siteimprove', 'code')
-    MIDDLEWARE[MIDDLEWARE.index('pretix.base.middleware.SecurityMiddleware')] = 'pretix_siteimprove.middleware.SecurityMiddleware'
-```
+  .. code-block:: python
+
+    if config.has_option('siteimprove', 'code'):
+        SITEIMPROVE_CODE = config.get('siteimprove', 'code')
+        MIDDLEWARE[MIDDLEWARE.index('pretix.base.middleware.SecurityMiddleware')] = 'pretix_siteimprove.middleware.SecurityMiddleware'
 
 2. Define your siteimprove code in `pretix.cfg`:
 
-```
-[siteimprove]
-code = xxxxxxx
-```
+  .. code-block::
+
+    [siteimprove]
+    code = xxxxxxx
 
 3. Copy `base_footer.html` to
    `%pretix.datadir%/templates/pretixpresale/base_footer.html/`
    (defined in `pretix.cfg`) and append this line:
 
-```
-<script type="text/javascript" src="/_pretix_siteimprove/siteimprove"></script>
-```
+  .. code-block:: HTML
+
+    <script type="text/javascript" src="/_pretix_siteimprove/siteimprove/"></script>
 
 4. Restart Pretix
 
