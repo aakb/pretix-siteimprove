@@ -8,7 +8,8 @@ class SecurityMiddleware(BaseSecurityMiddleware):
     def process_response(self, request, resp):
         h = {
             # Whitelist siteimprove urls in CSP.
-            'script-src': ['https://siteimproveanalytics.com', 'https://*.siteimprove.com'],
+            'script-src': ['https://siteimproveanalytics.com', 'https://*.siteimprove.com', 'https://policy.app.cookieinformation.com'],
+            'frame-src': ['https://policy.app.cookieinformation.com'],
             'img-src': ['https://*.siteimprove.com'],
             # Siteimprove adds inline styling.
             'style-src': ['\'unsafe-inline\''],
