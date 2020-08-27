@@ -21,15 +21,22 @@ Installation
     [siteimprove]
     code = xxxxxxx
 
-3. Copy `base_footer.html` to
-   `%pretix.datadir%/templates/pretixpresale/base_footer.html/`
+3. Copy `pretix/src/pretix/presale/templates/pretixpresale/base_footer.html` to
+   `%pretix.datadir%/templates/pretixpresale/base_footer.html`
    (defined in `pretix.cfg`) and append this line:
 
   .. code-block:: HTML
 
     <script type="text/javascript" src="{% url 'plugins:pretix_siteimprove:siteimprove' %}"></script>
 
-4. Restart Pretix
+4. Copy `pretix/src/pretix/presale/templates/pretixpresale/base.html` to
+   `%pretix.datadir%/templates/pretixpresale/base.html`
+   (defined in `pretix.cfg`) and insert this line at the start of the `head` element:
+
+  .. code-block:: HTML
+    <script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js" data-culture="DA" type="text/javascript"></script>
+
+5. Restart Pretix
 
 
 
