@@ -7,10 +7,19 @@ from pretix.base.middleware import (
 class SecurityMiddleware(BaseSecurityMiddleware):
     def process_response(self, request, resp):
         h = {
-            # Whitelist siteimprove urls in CSP.
-            'script-src': ['https://siteimproveanalytics.com', 'https://*.siteimprove.com', 'https://policy.app.cookieinformation.com'],
-            'frame-src': ['https://policy.app.cookieinformation.com'],
-            'img-src': ['https://*.siteimprove.com'],
+            'script-src': [
+                # Whitelist siteimprove urls in CSP.
+                'https://siteimproveanalytics.com', 'https://*.siteimprove.com',
+                # Whitelist cookieinformation urls and inline scripts.
+                'https://*.cookieinformation.com', '\'unsafe-inline\'', '\'unsafe-eval\''
+            ],
+            'connect-src': ['https://*.cookieinformation.com'],
+            'frame-src': ['https://*.cookieinformation.com'],
+            'img-src': [
+                'https://*.siteimprove.com',
+                # The cookie consent form loads an image.
+                'https://*.aarhus.dk'
+            ],
             # Siteimprove adds inline styling.
             'style-src': ['\'unsafe-inline\''],
         }
